@@ -44,29 +44,55 @@ export default class MainContainer extends Component {
     return this.state.items.filter(item => item.status === 'done')
   }
 
-  onDragStart = (event, description) => {
-    console.log('dragstart on div: ', description);
-    event.dataTransfer.setData("description", description);
-  }
+  // onDragStart = (event, description) => {
+  //   console.log('dragstart on div: ', description);
+  //   event.dataTransfer.setData("description", description);
+  // }
 
-  onDragOver = (event) => {
-      event.preventDefault();
-  }
+  // onDragOver = (event) => {
+  //     event.preventDefault();
+  // }
+
+  onDragStart = (e, index) => {
+    this.draggedItem = this.state.items[index];
+    e.dataTransfer.effectAllowed = "move";
+    e.dataTransfer.setData("text/html", e.target.parentNode);
+    e.dataTransfer.setDragImage(e.target.parentNode, 20, 20);
+  };
+
+  onDragOver = index => {
+    const draggedOverItem = this.state.items[index];
+
+    // if the item is dragged over itself, ignore
+    if (this.draggedItem === draggedOverItem) {
+      return;
+    }
+
+    // filter out the currently dragged item
+    let items = this.state.items.filter(item => item !== this.draggedItem);
+
+    // add the dragged item after the dragged over item
+    items.splice(index, 0, this.draggedItem);
+
+    this.setState({ items });
+  };
 
   onDrop = (event, status) => {
-      let description = event.dataTransfer.getData('description');
+    let description = event.dataTransfer.getData('description');
 
-      let items = this.state.items.filter((item) => {
-          if (item.description === description) {
-              item.status = status;
-          }
-          return item;
-      });
+    let items = this.state.items.filter((item) => {
+        if (item.description === description) {
+            item.status = status;
+        }
+        return item;
+    });
 
-      this.setState({
-          ...this.state,
-          items
-      });
+    this.setState({
+        ...this.state,
+        items
+    });
+
+    this.draggedItem = null;
   }
 
   render() {

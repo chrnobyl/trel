@@ -10,7 +10,7 @@ export default function TodoLane(props){
       <h3>To do:</h3>
       <ul>
         {props.items.map((item, index) => (
-          <Item key={index} item={item} onDragStart={props.onDragStart} />
+          <Item key={index} item={item} onDragStart={props.onDragStart} onDragOver={() => props.onDragOver(index)} />
           )
         )}
       </ul>
