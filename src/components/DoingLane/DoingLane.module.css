@@ -1,0 +1,11 @@
+.doing {
+  background-color: lightgrey;
+  width: 33%;
+  min-height: 100%;
+  /* padding-left: 2em; */
+  /* margin: 1em; */
+  /* border-style: solid; */
+  /* border-width: 1px; */
+  /* border-color: white; */
+  float: left;
+}

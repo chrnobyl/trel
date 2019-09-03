@@ -1,0 +1,8 @@
+.todo {
+  background-color: lightgrey;
+  width: 33%;
+  min-height: 100%;
+  /* padding: 2em; */
+  /* margin: 1em; */
+  float: left;
+}

@@ -1,0 +1,11 @@
+.primaryContainer {
+  height: 100vh;
+  margin: 1em;
+}
+
+.listContainer {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+}
+

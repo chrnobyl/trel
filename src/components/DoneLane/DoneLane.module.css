@@ -1,0 +1,9 @@
+.done {
+  background-color: lightgrey;
+  width: 33%;
+  min-height: 100%;
+  position: relative;
+  /* margin: 1em; */
+  /* padding: 2em; */
+  float: right;
+}
